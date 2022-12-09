@@ -44,10 +44,66 @@ public class PlayerControls : MonoBehaviour
             //jump power, mass, and
             //gravity
             rb.AddForce(Vector3.up * (jumpPower * rb.mass * rb.gravityScale * 20.0f));
+
+
+        }
+        //if the player position is less than
+        //the original position of the player
+        if (transform.position.x < posX)
+        {
+            //Execute GameOver function
+            GameOver();
         }
     }
      void OnCollisionEnter2D(Collision2D collision)
     {
-        //If colliders tag equals groundw
+        //If colliders tag equals ground
+        if (collision.collider.tag == "Ground")
+        {
+            //isGrounded equals true
+            isGrounded = true;
+        }
+        //if colliders tag equals enemy
+        if (collision.collider.tag == "Enemy")
+        {
+            //Game Over function is called
+            GameOver();
+        }
+    }
+     void OnCollisionStay2D(Collision2D collision)
+    {
+        //if colliders tag equals ground
+        if (collision.collider.tag == "Ground")
+        {
+            //isGrounded equals true
+            isGrounded = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        //If colliders tag equals ground
+        if (collision.collider.tag == "Ground")
+        {
+            //isGrounded equals true
+            isGrounded = false;
+        }
+    }
+    void GameOver()
+    {
+        //Game Over function is called from the game manger
+        GameObject.Find("GameController").GetComponent<GameController>().GameOver();
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //If triggers tag equals coin
+        if (collision.tag == "Coin")
+        {
+            //Call IncrementScore from
+            //Game COntroller
+            GameObject.Find("GameController").GetComponent<GameController>().IncrementScore();
+            //Destroy object
+            Destroy(collision.gameObject);
+        }
+
     }
 }
