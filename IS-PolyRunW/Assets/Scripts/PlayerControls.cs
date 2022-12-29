@@ -7,13 +7,13 @@ public class PlayerControls : MonoBehaviour
     //Jumping power for the player object
     [Header("Default Jumping Power")]
     public float jumpPower = 6f;
-    //True of false if the object
+    //True or false if the object
     //is on the ground
     [Header("Boolean isGrounded")]
     public bool isGrounded = false;
-    //Position of the object
+    //Posistion of the object
     float posX = 0.0f;
-    //Rigidbody2D of the object
+    //Rigidbody2D of the object 
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -26,36 +26,50 @@ public class PlayerControls : MonoBehaviour
         posX = transform.position.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-    }
-
-     void FixedUpdate()
-    {
-        //If the Spacebar is pressed and
-        //object is on the ground and 
+        //If the Spacebar is pressed and 
+        //object is on the ground and
         //the game is playing
-        if(Input.GetKey(KeyCode.Space) && isGrounded)
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            //Adds fokrce to the object
-            //to jump upwards based on
-            //jump power, mass, and
+            //Adds force to the object
+            //to jump upwards based on 
+            //jumppower, mass, and
             //gravity
             rb.AddForce(Vector3.up * (jumpPower * rb.mass * rb.gravityScale * 20.0f));
 
+            //if the player position is less than 
+            //the original position of the player
+            if(transform.position.x < posX)
+            {
+                //Execute GameOver function
+                GameOver();
+            }
 
         }
-        //if the player position is less than
-        //the original position of the player
-        if (transform.position.x < posX)
+
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    { 
+        //If colliders tag equals ground
+        if (collision.collider.tag == "Ground")
         {
-            //Execute GameOver function
+            //isGrounded equals true
+            isGrounded = true;
+        }
+        //If colliders tag equals enemy
+        if(collision.collider.tag == "Enemy")
+        {
+            //Game Over function is called
             GameOver();
         }
     }
-     void OnCollisionEnter2D(Collision2D collision)
+
+
+    void OnCollisionStay2D(Collision2D collision)
     {
         //If colliders tag equals ground
         if (collision.collider.tag == "Ground")
@@ -63,22 +77,8 @@ public class PlayerControls : MonoBehaviour
             //isGrounded equals true
             isGrounded = true;
         }
-        //if colliders tag equals enemy
-        if (collision.collider.tag == "Enemy")
-        {
-            //Game Over function is called
-            GameOver();
-        }
     }
-     void OnCollisionStay2D(Collision2D collision)
-    {
-        //if colliders tag equals ground
-        if (collision.collider.tag == "Ground")
-        {
-            //isGrounded equals true
-            isGrounded = true;
-        }
-    }
+
     void OnCollisionExit2D(Collision2D collision)
     {
         //If colliders tag equals ground
@@ -88,22 +88,28 @@ public class PlayerControls : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     void GameOver()
     {
-        //Game Over function is called from the game manger
+        //Game Over function is called from the game manager
         GameObject.Find("GameController").GetComponent<GameController>().GameOver();
     }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         //If triggers tag equals coin
         if (collision.tag == "Coin")
         {
             //Call IncrementScore from
-            //Game COntroller
+            //Game Controller
             GameObject.Find("GameController").GetComponent<GameController>().IncrementScore();
             //Destroy object
             Destroy(collision.gameObject);
         }
-
     }
 }
