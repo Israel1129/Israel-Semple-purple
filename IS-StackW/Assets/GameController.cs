@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
  //User interface namespace
     using UnityEngine.UI;
     //Scene Management namespace
@@ -18,7 +21,7 @@ public class GameController : MonoBehaviour
 public GameObject lastCube;
 //Text object
 [Header("Text object")]
-public Text text;
+public TMP_Text text;
     //Level number integer
     [Header("Current Level")]
     public int Level;
@@ -52,18 +55,20 @@ public Text text;
         var pos1 = lastCube.transform.position + Vector3.up * 10f;
         //Variable pos2 equals to the pos1 plus any level by number of 2
         var pos2 = pos1 + ((Level % 2 == 0) ? Vector3.left : Vector3.forward) * 120;
+        // change the vector deppending if it is a even or odd level.
+        var pos3 = lastCube.transform.position + Vector3.up * 10f + Vector3.forward;
         //If the level is by the number of two
         if(Level % 2 == 0)
         {
             //Current position of the current cube based of the 3 axis of
             //pos2, pos1, and time
-            currentCube.transform.position = Vector3.Lerp(pos2, pos1, time);
+            currentCube.transform.position = Vector3.Lerp( pos2, pos3, time);
         }
         else
         {
             //Current position of the current cube based of the 3 axis of
             //pos1, pos2, and time
-            currentCube.transform.position = Vector3.Lerp(pos1, pos2, time);
+            currentCube.transform.position = Vector3.Lerp(pos3, pos2, time);
         }
         //if left mouse button is clicked
         if (Input.GetMouseButtonDown(0))
@@ -100,15 +105,17 @@ public Text text;
             //Done equals to true
             Done = true;
             //Text is visible
-            text.gameObject.SetActive(true);
-            //Text equals to the text of Final score
-            //and which level is played
-            text.text = "Final Score: " + Level;
+
             //Start Corountine function X
             StartCoroutine(X());
             //Returns value
             return;
         }
+
+        text.gameObject.SetActive(true);
+        //Text equals to the text of Final score
+        //and which level is played
+        text.text = " Score: " + Level;
         lastCube = currentCube;
         //Current cube equals to the spawned
         // last cube 
