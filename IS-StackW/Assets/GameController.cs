@@ -52,18 +52,19 @@ public Text text;
         var pos1 = lastCube.transform.position + Vector3.up * 10f;
         //Variable pos2 equals to the pos1 plus any level by number of 2
         var pos2 = pos1 + ((Level % 2 == 0) ? Vector3.left : Vector3.forward) * 120;
+        var pos3 = pos1 + ((Level % 2 == 0) ? Vector3.right: Vector3.back) * 120;
         //If the level is by the number of two
         if(Level % 2 == 0)
         {
             //Current position of the current cube based of the 3 axis of
             //pos2, pos1, and time
-            currentCube.transform.position = Vector3.Lerp(pos2, pos1, time);
+            currentCube.transform.position = Vector3.Lerp(pos2, pos3, time);
         }
         else
         {
             //Current position of the current cube based of the 3 axis of
             //pos1, pos2, and time
-            currentCube.transform.position = Vector3.Lerp(pos1, pos2, time);
+            currentCube.transform.position = Vector3.Lerp(pos3, pos2, time);
         }
         //if left mouse button is clicked
         if (Input.GetMouseButtonDown(0))
@@ -71,6 +72,13 @@ public Text text;
             //New block function
             //is called
             Newblock();
+
+            //change text here
+            //Text is visible
+            text.gameObject.SetActive(true);
+            //Text equals to the text of Final score
+            //and which level is played
+            text.text = " Score: " + Level;
         }
     }  
     void Newblock()
@@ -103,7 +111,7 @@ public Text text;
             text.gameObject.SetActive(true);
             //Text equals to the text of Final score
             //and which level is played
-            text.text = "Final Score: " + Level;
+            text.text = " Score: " + Level;
             //Start Corountine function X
             StartCoroutine(X());
             //Returns value
@@ -115,7 +123,7 @@ public Text text;
         currentCube = Instantiate(lastCube);
         //Current cubes name equals to the
         //level number
-        currentCube.name = Level + "";
+        currentCube.name = Level + "Score:";
         //Current cube component mesh renderer material
         //set the color according to the color settings
         currentCube.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.HSVToRGB((Level / 100f) % 1f, 1f, 1f));
