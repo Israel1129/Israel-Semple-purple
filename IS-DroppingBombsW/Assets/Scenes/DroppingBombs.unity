@@ -362,6 +362,7 @@ MonoBehaviour:
   scoreSystem: {fileID: 2080809143}
   scoreText: {fileID: 1148524466}
   pointsWorth: 1
+  bestScoreText: {fileID: 1402180383}
 --- !u!4 &668934322
 Transform:
   m_ObjectHideFlags: 0
@@ -489,7 +490,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.8469e-39, y: 0, z: 0, w: NaN}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1240,8 +1241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295.04, y: 143}
-  m_SizeDelta: {x: 200.1087, y: 33.2846}
+  m_AnchoredPosition: {x: -245.33, y: 140.3}
+  m_SizeDelta: {x: 284.1078, y: 33.2846}
   m_Pivot: {x: 0.59174573, y: 0.26193783}
 --- !u!114 &1402180383
 MonoBehaviour:
