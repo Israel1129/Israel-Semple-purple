@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class player : MonoBehaviour
 {
     public float speed;
     // Start is called before the first frame update
@@ -14,14 +14,15 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector2.up * Time.deltaTime * speed);
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector2.down * Time.deltaTime * speed);
+            transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
     }
 }
