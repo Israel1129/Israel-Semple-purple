@@ -387,7 +387,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.1877594
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -434,13 +434,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -9.678595, y: 4.9808745}
-  - {x: -9.60475, y: 1.277303}
-  - {x: -9.358195, y: -4.355891}
-  - {x: -9.25745, y: -5.1358495}
-  - {x: 10.399486, y: -5.0056777}
-  - {x: 10.514415, y: 4.933233}
-  - {x: -9.8659, y: 5.0211673}
+  - {x: -14.127377, y: 6.230851}
+  - {x: -14.263819, y: -6.280235}
+  - {x: 14.194383, y: -6.295325}
+  - {x: 14.251196, y: 6.160387}
+  - {x: -14.17099, y: 6.2617135}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -496,7 +494,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 540777122}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d1b19ede66287d44a9fe34ac2d910938, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -594,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb6106a86f410d409d1a25b82783dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 396061065}
 --- !u!1 &883258969
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 386517624}
   xSpace: 2.2
-  xOffset: 0
+  xOffset: -10
 --- !u!4 &883258971
 Transform:
   m_ObjectHideFlags: 0
@@ -876,6 +875,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2215863915272846985, guid: cd3ba2ce217de8c49b25c2513b874d63, type: 3}
       propertyPath: m_Name
+      value: Brick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215863915272846985, guid: cd3ba2ce217de8c49b25c2513b874d63, type: 3}
+      propertyPath: m_TagString
       value: Brick
       objectReference: {fileID: 0}
     - target: {fileID: 2802554332685027809, guid: cd3ba2ce217de8c49b25c2513b874d63, type: 3}
