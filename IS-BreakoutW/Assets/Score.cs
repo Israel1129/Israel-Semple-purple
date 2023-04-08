@@ -16,8 +16,11 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
-        score++;
-        scoreText.text = score.ToString();
+         if (collision.gameObject.CompareTag("Brick"))
+        {
+            Destroy(collision.gameObject);
+            score++;
+            scoreText.text = score.ToString();
+        }
     }
 }
