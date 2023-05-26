@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Asteroid : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * speed;
     }
 
     // Update is called once per frame
@@ -24,7 +25,8 @@ public class Asteroid : MonoBehaviour
 
         if(transform.localScale.x > minSize)
         {
-
+            transform.localScale = transform.localScale * 0.5f;
+            Instantiate(gameObject, transform.position, Quaternion.identity);
         }
         else
         {
